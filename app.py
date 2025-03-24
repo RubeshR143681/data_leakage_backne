@@ -17,7 +17,7 @@ app = Flask(__name__)
 # Enable CORS for all routes, allow credentials, and specify the allowed origin
 CORS(
     app,
-    origins="http://localhost:3000",  # Allow only this origin
+    origins="https://data-leakage-backne.vercel.app/",  # Allow only this origin
     supports_credentials=True,  # Allow credentials (cookies, authorization headers)
 )
 
@@ -82,7 +82,7 @@ def verify_token(token):
 def handle_preflight():
     if request.method == "OPTIONS":
         response = jsonify({})
-        response.headers.add("Access-Control-Allow-Origin", "http://localhost:3000")
+        response.headers.add("Access-Control-Allow-Origin", "https://data-leakage-backne.vercel.app/")
         response.headers.add("Access-Control-Allow-Headers", "Content-Type, Authorization")
         response.headers.add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
         response.headers.add("Access-Control-Allow-Credentials", "true")
@@ -91,7 +91,7 @@ def handle_preflight():
 # Add CORS headers to all responses
 @app.after_request
 def add_cors_headers(response):
-    response.headers.add("Access-Control-Allow-Origin", "http://localhost:3000")
+    response.headers.add("Access-Control-Allow-Origin", "https://data-leakage-backne.vercel.app/")
     response.headers.add("Access-Control-Allow-Credentials", "true")
     response.headers.add("Access-Control-Allow-Headers", "Content-Type, Authorization")
     response.headers.add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
