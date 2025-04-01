@@ -10,7 +10,6 @@ from werkzeug.utils import secure_filename
 import bcrypt
 import jwt
 import datetime
-from app import app
 
 app = Flask(__name__)
 
