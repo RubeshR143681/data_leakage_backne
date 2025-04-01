@@ -10,6 +10,7 @@ from werkzeug.utils import secure_filename
 import bcrypt
 import jwt
 import datetime
+app = Flask(__name__)
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -45,7 +46,7 @@ def get_db_connection():
         password=MYSQL_PASSWORD,
         database=MYSQL_DATABASE
     )
-
+print("hellow world")
 # Helper function to check if a file is allowed
 ALLOWED_EXTENSIONS = {'csv'}
 def allowed_file(filename):
@@ -329,5 +330,8 @@ def profile():
 
 # Run the Flask app
 if __name__ == '__main__':
-    app.run(debug=True)
-
+    if os.environ.get('ENV') == 'production':
+        from waitress import serve
+        serve(app, host="0.0.0.0", port=5000)
+    else:
+        app.run(debug=True)
